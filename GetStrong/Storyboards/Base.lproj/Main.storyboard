@@ -176,31 +176,11 @@
                                     <action selector="calculateClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u5f-uP-VnC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYB-Jm-5OL">
-                                <rect key="frame" x="120" y="722" width="174" height="30"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0Ud-Q0-YxM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Add Entry">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="addEntryClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GlU-Fb-9bw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PPP-2K-4AL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="273-58-sG3"/>
                             <constraint firstItem="XbG-qN-sbb" firstAttribute="top" secondItem="GMW-e6-by8" secondAttribute="bottom" constant="40" id="2BC-uc-EXw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yYB-Jm-5OL" secondAttribute="trailing" constant="120" id="2VB-P6-nqs"/>
                             <constraint firstItem="XbG-qN-sbb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="60W-lH-5cb"/>
                             <constraint firstItem="7AU-dO-U7G" firstAttribute="top" secondItem="loB-HN-rRV" secondAttribute="bottom" constant="20" id="6T6-r3-yA7"/>
                             <constraint firstItem="vca-r6-X5j" firstAttribute="top" secondItem="GY2-8v-z73" secondAttribute="bottom" constant="5" id="7OX-qr-fEs"/>
@@ -216,7 +196,6 @@
                             <constraint firstItem="fsL-Fw-SzY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SLe-uL-KjR"/>
                             <constraint firstItem="GY2-8v-z73" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SSL-ot-S8A"/>
                             <constraint firstItem="bu0-En-rxP" firstAttribute="top" secondItem="fsL-Fw-SzY" secondAttribute="bottom" constant="5" id="ZLt-nt-Gcg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yYB-Jm-5OL" secondAttribute="bottom" constant="110" id="cSd-bq-Wds"/>
                             <constraint firstItem="loB-HN-rRV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="dMW-vd-ZXm"/>
                             <constraint firstItem="GY2-8v-z73" firstAttribute="top" secondItem="7AU-dO-U7G" secondAttribute="bottom" constant="30" id="dMx-7e-jcb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vca-r6-X5j" secondAttribute="trailing" constant="95" id="dsb-nX-UPu"/>
@@ -232,7 +211,6 @@
                             <constraint firstItem="loB-HN-rRV" firstAttribute="top" secondItem="s4M-ZD-kFZ" secondAttribute="bottom" constant="60" id="lgn-pk-vRv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XbG-qN-sbb" secondAttribute="trailing" id="qBh-ZV-iJr"/>
                             <constraint firstItem="hQ8-Py-JLz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qgp-6q-gyx"/>
-                            <constraint firstItem="yYB-Jm-5OL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="wBM-dQ-QGh"/>
                             <constraint firstItem="s4M-ZD-kFZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wLN-9s-58E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GMW-e6-by8" secondAttribute="trailing" constant="100" id="xgJ-Qx-rqf"/>
                             <constraint firstItem="XbG-qN-sbb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yX0-2s-UZe"/>
@@ -300,7 +278,7 @@
                                             <constraint firstAttribute="height" constant="60" id="XbF-IE-uOR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <state key="normal" title="History Log">
+                                        <state key="normal" title="History">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -309,7 +287,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="goToLogEntry" destination="qrM-pP-5K7" eventType="touchUpInside" id="Jpk-A1-9eZ"/>
+                                            <action selector="goToHistory:" destination="qrM-pP-5K7" eventType="touchUpInside" id="YcM-jP-ErC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -359,7 +337,7 @@
         <!--Table VC-->
         <scene sceneID="3UZ-G5-cDd">
             <objects>
-                <viewController storyboardIdentifier="logEntryVC" id="Adu-hE-COx" userLabel="Table VC" customClass="LogEntryViewController" customModule="GetStrong" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="historyVC" id="Adu-hE-COx" userLabel="Table VC" customClass="HistoryViewController" customModule="GetStrong" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cun-jY-MBI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

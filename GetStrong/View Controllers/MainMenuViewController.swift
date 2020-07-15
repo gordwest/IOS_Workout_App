@@ -19,8 +19,8 @@ class MainMenuViewController: UIViewController {
         present(vc, animated: true)
     }
     
-    @IBAction func goToLogEntry() {
-        let vc = storyboard?.instantiateViewController(identifier: "logEntryVC") as! LogEntryViewController
+    @IBAction func goToHistory(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "historyVC") as! HistoryViewController
         present(vc, animated: true)
     }
     

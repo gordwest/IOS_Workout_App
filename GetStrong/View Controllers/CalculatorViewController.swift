@@ -33,10 +33,6 @@ class CalculatorViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func addEntryClick(_ sender: Any) {
-        insertNewRow()
-    }
-    
     @IBAction func calculateClick(_ sender: Any) {
         asignLabels()
     }
@@ -48,19 +44,6 @@ class CalculatorViewController: UIViewController {
         format.dateFormat = "dd/MM/yyyy"
         let formattedDate = format.string(from: date)
         return formattedDate
-    }
-    
-    // insert new row into history log table view
-    func insertNewRow() {
-        // Assign variables from user input
-        let weightEntry = getInput(field: weightUserEntry)
-        let repsEntry  = getInput(field: RepsUserEntry)
-        let rpeEntry = getInput(field: RPEUserEntry)
-        
-        if weightEntry != 0 || repsEntry != 0 || rpeEntry != 0 {
-            let logEntry = LogEntry(date: currentDate(), weight: String(weightEntry), reps: String(repsEntry), rpe: String(rpeEntry))
-            logEntries.append(logEntry)
-        }
     }
     
     // asign e1rm,weight,reps labels based off user input

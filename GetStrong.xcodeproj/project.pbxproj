@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0205BBEB24A2D7F300978C63 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205BBEA24A2D7F300978C63 /* MainMenuViewController.swift */; };
-		0205BBED24A2F44900978C63 /* LogEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205BBEC24A2F44900978C63 /* LogEntryViewController.swift */; };
+		0205BBED24A2F44900978C63 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0205BBEC24A2F44900978C63 /* HistoryViewController.swift */; };
 		02D4D24524995C4D0015B889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4D24424995C4D0015B889 /* AppDelegate.swift */; };
 		02D4D24724995C4D0015B889 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4D24624995C4D0015B889 /* SceneDelegate.swift */; };
 		02D4D24924995C4D0015B889 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4D24824995C4D0015B889 /* CalculatorViewController.swift */; };
@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		0205BBEA24A2D7F300978C63 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		0205BBEC24A2F44900978C63 /* LogEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEntryViewController.swift; sourceTree = "<group>"; };
+		0205BBEC24A2F44900978C63 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		02D4D24124995C4D0015B889 /* GetStrong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStrong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D4D24424995C4D0015B889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02D4D24624995C4D0015B889 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 			children = (
 				0205BBEA24A2D7F300978C63 /* MainMenuViewController.swift */,
 				02D4D24824995C4D0015B889 /* CalculatorViewController.swift */,
-				0205BBEC24A2F44900978C63 /* LogEntryViewController.swift */,
+				0205BBEC24A2F44900978C63 /* HistoryViewController.swift */,
 				02F24A6C24A3AD90004BDF1D /* AboutViewController.swift */,
 			);
 			path = "View Controllers";
@@ -175,7 +175,7 @@
 				0205BBEB24A2D7F300978C63 /* MainMenuViewController.swift in Sources */,
 				02D4D24924995C4D0015B889 /* CalculatorViewController.swift in Sources */,
 				02D4D24524995C4D0015B889 /* AppDelegate.swift in Sources */,
-				0205BBED24A2F44900978C63 /* LogEntryViewController.swift in Sources */,
+				0205BBED24A2F44900978C63 /* HistoryViewController.swift in Sources */,
 				02D4D24724995C4D0015B889 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

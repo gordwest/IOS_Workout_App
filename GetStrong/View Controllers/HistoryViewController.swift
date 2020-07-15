@@ -11,7 +11,7 @@ import UIKit
 // initialize global var for log entries
 var logEntries: [LogEntry] = []
 
-class LogEntryViewController: UIViewController {
+class HistoryViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
@@ -79,7 +79,7 @@ class LogEntryViewController: UIViewController {
     }
 }
 
-extension LogEntryViewController: UITableViewDelegate, UITableViewDataSource{
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return logEntries.count
