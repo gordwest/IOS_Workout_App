@@ -12,12 +12,14 @@ class LogEntryCell: UITableViewCell {
 
 
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var rpeLabel: UILabel!
     
     func setLogEntry(logEntry: LogEntry) {
         dateLabel.text = logEntry.date
+        exerciseLabel.text = logEntry.exercise
         weightLabel.text = logEntry.weight
         repsLabel.text = logEntry.reps
         rpeLabel.text = logEntry.rpe
