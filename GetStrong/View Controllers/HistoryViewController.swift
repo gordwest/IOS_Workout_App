@@ -24,8 +24,9 @@ class HistoryViewController: UIViewController {
         logEntries = load() // load existing data
     }
     
-    @IBAction func addRowClick(_ sender: Any) {
-        insertNewLogEntry()
+    @IBAction func goToInputForm(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "inputFormVC") as! InputFormViewController
+        present(vc, animated: true)
     }
     
     // call save method when leaving the table view screen
@@ -34,10 +35,7 @@ class HistoryViewController: UIViewController {
     }
     
     // insert a new row into table view on Entry Log screen
-    func insertNewLogEntry(){
-        // hard coded new row entry
-        let logEntry = LogEntry(date: currentDate(), weight: "405", reps: "4", rpe: "9")
-        logEntries.append(logEntry)
+    public func refreshTable(){
         let indexPath = IndexPath(row: logEntries.count - 1, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
@@ -69,7 +67,7 @@ class HistoryViewController: UIViewController {
     }
     
     // save table data to user defaults
-    func save(data: [LogEntry]) -> Bool {
+    public func save(data: [LogEntry]) -> Bool {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(data) {
             UserDefaults.standard.set(encoded, forKey: "data")
