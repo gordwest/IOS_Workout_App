@@ -10,7 +10,7 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
     
-    // UI conections
+    // MARK: IBOutlets
     @IBOutlet weak var DaySegmentControl: UISegmentedControl!
     @IBOutlet weak var WeekSegmentControl: UISegmentedControl!
     @IBOutlet weak var WeightLabel: UILabel!
@@ -20,40 +20,24 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var RPEUserEntry: UITextField!
     @IBOutlet weak var e1RMLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-
-    //Calls this function when the tap is recognized.
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
+    // MARK: IBActions
     @IBAction func calculateClick(_ sender: Any) {
         asignLabels()
     }
     
-    // return current date as a string
-    func currentDate() -> String {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "dd/MM/yyyy"
-        let formattedDate = format.string(from: date)
-        return formattedDate
+    // MARK: View lifecycle methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    
-    // asign e1rm,weight,reps labels based off user input
+
+    // assign output labels for calculation based off user input
     func asignLabels() {
         // Assign variables from user input
         let weightEntry = getInput(field: weightUserEntry)
         let repsEntry  = getInput(field: RepsUserEntry)
         let rpeEntry = getInput(field: RPEUserEntry)
-        let dayChoice = DaySegmentControl.titleForSegment(at: DaySegmentControl.selectedSegmentIndex) ?? "0"
-        let weekChoice = WeekSegmentControl.titleForSegment(at: WeekSegmentControl.selectedSegmentIndex) ?? "0"
+        let dayChoice = DaySegmentControl.titleForSegment(at: DaySegmentControl.selectedSegmentIndex)!
+        let weekChoice = WeekSegmentControl.titleForSegment(at: WeekSegmentControl.selectedSegmentIndex)!
         
         // Assign estimate 1RM label
         let e1RMString = calculate1RM(weight: weightEntry, reps: repsEntry, rpe: Double(rpeEntry))
@@ -65,16 +49,15 @@ class CalculatorViewController: UIViewController {
             RepsLabel.text = repsString
         }
         // Assign weight label
-        let e1RMInt = Int(e1RMString) ?? 0
-        let repsInt = Int(repsString) ?? 0
+        let e1RMInt = Int(e1RMString)!
+        let repsInt = Int(repsString)!
         WeightLabel.text = calculateTopSet(e1RM: e1RMInt, weight: weightEntry, reps: repsInt, rpe: Double(rpeEntry))
     }
     
     // get text field value and convert to int
     func getInput(field:UITextField) -> Int{
-        let input:String = field.text!
-        let num = Int(input)
-        return num ?? 0
+        let input = field.text!
+        return Int(input)!
     }
     
     // determine the amount of reps for the top set based off the day/week selected
@@ -89,7 +72,7 @@ class CalculatorViewController: UIViewController {
         return reps
     }
     
-    // calculate the estimated 1RM based of the data entered
+    // calculate the estimated 1RM based off the data entered
     func calculate1RM(weight:Int, reps:Int, rpe:Double) -> String{
         let multiplier:Double = 1.005
         var e1RM:Int = 0
@@ -246,5 +229,11 @@ class CalculatorViewController: UIViewController {
         
         return String(topSetWeight)
     }
+    
+    // hide keyboard/picker when touch even occurs
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
 }
 

@@ -8,13 +8,38 @@
 
 import UIKit
 
+protocol InputFormViewControllerDelegate {
+    func addNewExerciseEntry(logEntry: LogEntry)
+}
+
 class InputFormViewController: UIViewController {
+    
+    // MARK: Variables
+    
+    var delegate: InputFormViewControllerDelegate!
+    
+    // MARK: IBOutlets
 
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var excersieTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var repsTextField: UITextField!
     @IBOutlet weak var rpeTextField: UITextField!
+    
+    // MARK: IBActions
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        let newLogEntry = LogEntry(date: dateTextField.text!,
+                                exercise: excersieTextField.text!,
+                                weight: weightTextField.text!,
+                                reps: repsTextField.text!,
+                                rpe: rpeTextField.text!)
+        
+        delegate.addNewExerciseEntry(logEntry: newLogEntry)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: View lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,30 +49,8 @@ class InputFormViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(InputFormViewController.datePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
         dateTextField.inputView = datePicker
         
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
 
-    //Calls this function when the tap is recognized.
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @IBAction func saveClick(_ sender: Any) {
-        let date = dateTextField.text!
-        let exercise = excersieTextField.text!
-        let weight = weightTextField.text!
-        let reps = repsTextField.text!
-        let rpe = repsTextField.text!
-        
-        let logEntry = LogEntry(date: date, exercise: exercise, weight: weight, reps: reps, rpe: rpe)
-        logEntries.append(logEntry)
-        print(HistoryViewController().save(data: logEntries))
-        
-        self.dismiss(animated:true, completion: nil) // unload the current view controller
-    }
-    
     // assign date field using date picker
     @objc func datePickerValueChanged(sender: UIDatePicker) {
         let formatter = DateFormatter()
@@ -56,6 +59,7 @@ class InputFormViewController: UIViewController {
         dateTextField.text = formatter.string(from: sender.date)
     }
     
+    // hides keyboard/picker when touch even occurs
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

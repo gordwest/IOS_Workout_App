@@ -8,50 +8,32 @@
 
 import UIKit
 
-// initialize global var for log entries
-var logEntries: [LogEntry] = []
-
-class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
     
+    // MARK: Variables
+    var logEntries: [LogEntry] = []
+    
+    // MARK: IBOutlets
     @IBOutlet var tableView: UITableView!
     
+    // MARK: View Lifecyle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        print("Loaded")
+        
         logEntries = load() // load existing data
+        print("Loaded")
     }
     
-    @IBAction func goToInputForm(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "inputFormVC") as! InputFormViewController
-        present(vc, animated: true)
+    // add new log entry to array and reload table data
+    func addNewExerciseEntry(logEntry: LogEntry) {
+        logEntries.append(logEntry)
+        tableView.reloadData()
     }
     
-    // call save method when leaving the table view screen
-    override func viewWillDisappear(_ animated: Bool) {
-        print(String(describing: save(data: logEntries)))
-    }
-    
-    // insert a new row into table view on Entry Log screen
-    public func refreshTable(){
-        let indexPath = IndexPath(row: logEntries.count - 1, section: 0)
-        tableView.beginUpdates()
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
-    }
-    
-    // return current date as a string
-    func currentDate() -> String {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "dd/MM/yyyy"
-        let formattedDate = format.string(from: date)
-        return formattedDate
-    }
-    
-    // load user default table data or initialize new empty array
+    // load user defaults data if exists, or initialize new empty array
     func load() -> [LogEntry]{
         let initializedTable: [LogEntry] = []
         let decoder = JSONDecoder()
@@ -67,13 +49,26 @@ class HistoryViewController: UIViewController {
     }
     
     // save table data to user defaults
-    public func save(data: [LogEntry]) -> Bool {
+    func save(data: [LogEntry]) -> Bool {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(data) {
             UserDefaults.standard.set(encoded, forKey: "data")
             return true
         }
         return false
+    }
+    
+    // call save method when leaving the table view screen
+    override func viewWillDisappear(_ animated: Bool) {
+        print(String(describing: save(data: logEntries)))
+    }
+
+    // MARK: Navigation methods
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "inputFormSegue" {
+            let destinationVC = segue.destination as! InputFormViewController
+            destinationVC.delegate = self
+        }
     }
 }
 
