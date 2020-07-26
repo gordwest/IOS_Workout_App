@@ -57,7 +57,7 @@ class CalculatorViewController: UIViewController {
     // get text field value and convert to int
     func getInput(field:UITextField) -> Int{
         let input = field.text!
-        return Int(input)!
+        return Int(input) ?? 0
     }
     
     // determine the amount of reps for the top set based off the day/week selected
