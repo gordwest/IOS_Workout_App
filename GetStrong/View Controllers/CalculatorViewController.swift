@@ -8,14 +8,14 @@
 
 import UIKit
 
-class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // MARK: Variables
     let repsPicker = UIPickerView()
     let rpePicker = UIPickerView()
     
-    let repRange = ["1","2","3","4","5","6","7","8"]
-    let rpeRange = ["6","6.5","7","7.5","8","8.5","9","9.5","10"]
+    let repRange = ["8","7","6","5","4","3","2","1"]
+    let rpeRange = ["10","9.5","9","8.5","8","7.5","7","6.5","6"]
     
     // MARK: IBOutlets
     @IBOutlet weak var DaySegmentControl: UISegmentedControl!
@@ -39,6 +39,9 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
         repsPicker.dataSource = self
         rpePicker.delegate = self
         rpePicker.dataSource = self
+        
+        repsTextField.delegate = self
+        rpeTextField.delegate = self
         
         repsTextField.inputView = repsPicker
         rpeTextField.inputView = rpePicker
@@ -79,6 +82,16 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == repsTextField {
+            repsTextField.text = repRange[0]
+        }
+        else if textField == rpeTextField {
+            rpeTextField.text = rpeRange[0]
+        }
+    }
+    
+    // MARK: Tool bar
     // create/add tool bar to UIPickerViews
     func initializeToolBar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))

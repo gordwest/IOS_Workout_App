@@ -12,7 +12,7 @@ protocol InputFormViewControllerDelegate {
     func addNewExerciseEntry(logEntry: LogEntry)
 }
 
-class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // MARK: Variables
     var delegate: InputFormViewControllerDelegate!
@@ -21,7 +21,7 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     let repsPicker = UIPickerView()
     let rpePicker = UIPickerView()
     
-    let repRange = ["8","7","6","5","4","3","2","1"]
+    let repRange = ["12","11","10","9","8","7","6","5","4","3","2","1"]
     let rpeRange = ["10","9.5","9","8.5","8","7.5","7","6.5","6"]
     
     // MARK: IBOutlets
@@ -47,6 +47,9 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         repsPicker.dataSource = self
         rpePicker.delegate = self
         rpePicker.dataSource = self
+        
+        repsTextField.delegate = self
+        rpeTextField.delegate = self
                
         repsTextField.inputView = repsPicker
         rpeTextField.inputView = rpePicker
@@ -120,8 +123,18 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == repsPicker {
             repsTextField.text = repRange[row]
-        } else if pickerView == rpePicker{
+        }
+        else if pickerView == rpePicker {
             rpeTextField.text = rpeRange[row]
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == repsTextField {
+            repsTextField.text = repRange[0]
+        }
+        else if textField == rpeTextField {
+            rpeTextField.text = rpeRange[0]
         }
     }
     

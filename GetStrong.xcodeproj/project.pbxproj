@@ -61,6 +61,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		028412C424CE915F00734FC4 /* History Table */ = {
+			isa = PBXGroup;
+			children = (
+				02F24A7024A41028004BDF1D /* LogEntry.swift */,
+				02F24A6E24A40F2B004BDF1D /* LogEntryCell.swift */,
+			);
+			path = "History Table";
+			sourceTree = "<group>";
+		};
 		029B1A5224A9990200D1365E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,8 +101,7 @@
 				02D4D24D24995C4E0015B889 /* Assets.xcassets */,
 				029B1A5224A9990200D1365E /* Storyboards */,
 				0205BBEE24A2FBE200978C63 /* View Controllers */,
-				02F24A6E24A40F2B004BDF1D /* LogEntryCell.swift */,
-				02F24A7024A41028004BDF1D /* LogEntry.swift */,
+				028412C424CE915F00734FC4 /* History Table */,
 				02D4D24424995C4D0015B889 /* AppDelegate.swift */,
 				02D4D24624995C4D0015B889 /* SceneDelegate.swift */,
 				02D4D25224995C4E0015B889 /* Info.plist */,
