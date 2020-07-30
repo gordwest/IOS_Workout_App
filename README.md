@@ -9,8 +9,9 @@
 - Table to log exercise history
 
 ### Upcoming changes in next patch
-- Make place holder text more clear for input fields
+- Make placeholder text more clear for input fields
 - Add new history entries to top of table instead of bottom (until I can get table sorting implemented)
+- Table data saves to user default after new entry is made
 - Address table spacing on smaller devices
 
 ### Future changes
