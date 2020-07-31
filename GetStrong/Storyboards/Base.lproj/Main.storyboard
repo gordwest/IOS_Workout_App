@@ -410,10 +410,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ly6-OW-tSk" userLabel="Exercise">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ly6-OW-tSk" userLabel="Exercise">
                                                     <rect key="frame" x="110" y="0.0" width="43.5" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="145" id="ObR-ZS-9vH"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="140" id="ObR-ZS-9vH"/>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" priority="750" constant="90" id="u9b-me-d8R"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -470,7 +470,7 @@
                                                 <constraint firstItem="ly6-OW-tSk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aUI-a3-bH7" secondAttribute="trailing" id="lrC-Df-LDh"/>
                                                 <constraint firstItem="fOz-Ic-CQG" firstAttribute="leading" secondItem="tNL-U5-zQc" secondAttribute="trailing" priority="750" constant="25" id="qwK-EM-DQA"/>
                                                 <constraint firstItem="ly6-OW-tSk" firstAttribute="top" secondItem="kKq-mR-maV" secondAttribute="top" id="vdv-Cp-wRF"/>
-                                                <constraint firstItem="tNL-U5-zQc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ly6-OW-tSk" secondAttribute="trailing" id="xSq-9c-4rY"/>
+                                                <constraint firstItem="tNL-U5-zQc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ly6-OW-tSk" secondAttribute="trailing" constant="5" id="xSq-9c-4rY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
