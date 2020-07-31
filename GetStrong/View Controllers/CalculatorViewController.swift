@@ -83,10 +83,10 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == repsTextField {
+        if textField == repsTextField && repsTextField.text == "" {
             repsTextField.text = repRange[0]
         }
-        else if textField == rpeTextField {
+        else if textField == rpeTextField && rpeTextField.text == "" {
             rpeTextField.text = rpeRange[0]
         }
     }

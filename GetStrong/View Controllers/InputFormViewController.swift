@@ -10,6 +10,8 @@ import UIKit
 
 protocol InputFormViewControllerDelegate {
     func addNewExerciseEntry(logEntry: LogEntry)
+    func save(data: [LogEntry]) -> Bool
+    func getLogEntries() -> Array<LogEntry>
 }
 
 class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
@@ -33,10 +35,13 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     // MARK: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text!, weight: weightTextField.text!,
-                                   reps: repsTextField.text!, rpe: rpeTextField.text!)
+        let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text!, weight: weightTextField.text!, reps: repsTextField.text!, rpe: rpeTextField.text!)
+        
         delegate.addNewExerciseEntry(logEntry: newLogEntry)
+        
         navigationController?.popViewController(animated: true)
+        
+        print(String(describing: delegate.save(data: delegate.getLogEntries())))
     }
     
     // MARK: View lifecycle methods
@@ -130,10 +135,10 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == repsTextField {
+        if textField == repsTextField && repsTextField.text == "" {
             repsTextField.text = repRange[0]
         }
-        else if textField == rpeTextField {
+        else if textField == rpeTextField && rpeTextField.text == "" {
             rpeTextField.text = rpeRange[0]
         }
     }

@@ -27,9 +27,14 @@ class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
         print("Loaded")
     }
     
+    // return log entries (for use in other VC)
+    func getLogEntries() -> Array<LogEntry> {
+        return logEntries
+    }
+    
     // add new log entry to array and reload table data
     func addNewExerciseEntry(logEntry: LogEntry) {
-        logEntries.append(logEntry)
+        logEntries.insert(logEntry, at: 0)
         tableView.reloadData()
     }
     
