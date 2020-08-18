@@ -57,9 +57,9 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == repsPicker {
             return repRange[row]
-
-        } else if pickerView == rpePicker{
-             return rpeRange[row]
+        }
+        else if pickerView == rpePicker{
+            return rpeRange[row]
         }
         return ""
     }
@@ -116,25 +116,22 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     // assign output labels for calculation based off user input
     func assignLabels() {
         // Assign variables from user input
-        let weightEntry = getInput(field: weightTextField)
-        let repsEntry  = getInput(field: repsTextField)
-        let rpeEntry = getInput(field: rpeTextField)
+        let weightEntry = Int(weightTextField.text!)
+        let repsEntry  = Int(repsTextField.text!)
+        let rpeEntry = Double(rpeTextField.text!)
         let dayChoice = DaySegmentControl.titleForSegment(at: DaySegmentControl.selectedSegmentIndex)!
         let weekChoice = WeekSegmentControl.titleForSegment(at: WeekSegmentControl.selectedSegmentIndex)!
-        
-        // Assign estimate 1RM label
-        let e1RMString = calculate1RM(weight: weightEntry, reps: repsEntry, rpe: Double(rpeEntry))
-        e1RMLabel.text = e1RMString
-        
-        // Assign Reps label
-        let repsString = calculateReps(day: dayChoice, week: weekChoice)
-        if weightEntry != 0 || repsEntry != 0 || rpeEntry != 0 {
-            RepsLabel.text = repsString
+        let e1RM = calculate1RM(weight: weightEntry ?? 0, reps: repsEntry ?? 0, rpe: rpeEntry ?? 0.0)
+        let reps = calculateReps(day: dayChoice, week: weekChoice)
+        // Assign labels if fields are filled out
+        if weightEntry != nil && repsEntry != nil && rpeEntry != nil { // check if all fields have values
+            RepsLabel.text = String(reps)
+            e1RMLabel.text = String(e1RM)
+            WeightLabel.text = calculateTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0)
         }
-        // Assign weight label
-        let e1RMInt = Int(e1RMString)!
-        let repsInt = Int(repsString)!
-        WeightLabel.text = calculateTopSet(e1RM: e1RMInt, weight: weightEntry, reps: repsInt, rpe: Double(rpeEntry))
+        else {
+            Alert.showBasicAlert(on: self, with: "Invalid Inputs", message: "Please fill out all fields and try again.")
+        }
     }
     
     // get text field value and convert to int
@@ -144,22 +141,21 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     // determine the amount of reps for the top set based off the day/week selected
-    func calculateReps(day:String, week:String) -> String{
-        var reps = ""
-        if week == "Week 1" && day == "Day 1" {reps = "6"}
-        if week == "Week 2" && day == "Day 1" {reps = "5"}
-        if week == "Week 3" && day == "Day 1" {reps = "4"}
-        if week == "Week 1" && day == "Day 2" {reps = "3"}
-        if week == "Week 2" && day == "Day 2" {reps = "2"}
-        if week == "Week 3" && day == "Day 2" {reps = "1"}
+    func calculateReps(day:String, week:String) -> Int{
+        var reps = 0
+        if week == "Week 1" && day == "Day 1" {reps = 6}
+        if week == "Week 2" && day == "Day 1" {reps = 5}
+        if week == "Week 3" && day == "Day 1" {reps = 4}
+        if week == "Week 1" && day == "Day 2" {reps = 3}
+        if week == "Week 2" && day == "Day 2" {reps = 2}
+        if week == "Week 3" && day == "Day 2" {reps = 1}
         return reps
     }
     
     // calculate the estimated 1RM based off the data entered
-    func calculate1RM(weight:Int, reps:Int, rpe:Double) -> String{
+    func calculate1RM(weight:Int, reps:Int, rpe:Double) -> Int{
         let multiplier:Double = 1.005
         var e1RM:Int = 0
-        
         if reps ==  1 && rpe ==  10 {
             e1RM = Int(round((Double(weight) / 1) * multiplier))}
         if reps ==  1 && rpe ==  9.5 {
@@ -289,7 +285,7 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
         if reps ==  8 && rpe ==  6.5 {
             e1RM = Int(round((Double(weight) / 0.69) * multiplier))}
 
-        return String(e1RM)
+        return e1RM
     }
     
     func calculateTopSet(e1RM:Int, weight:Int, reps:Int, rpe:Double) -> String {
