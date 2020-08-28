@@ -1,5 +1,5 @@
 //
-//  HistoryCell.swift
+//  LogEntryCell.swift
 //  GetStrong
 //
 //  Created by Gord West on 2020-06-24.
@@ -20,8 +20,8 @@ class LogEntryCell: UITableViewCell {
     func setLogEntry(logEntry: LogEntry) {
         dateLabel.text = logEntry.date
         exerciseLabel.text = logEntry.exercise
-        weightLabel.text = logEntry.weight
-        repsLabel.text = logEntry.reps
+        weightLabel.text = String(logEntry.weight)
+        repsLabel.text = String(logEntry.reps)
         rpeLabel.text = logEntry.rpe
     }
     

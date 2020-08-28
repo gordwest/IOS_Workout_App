@@ -8,13 +8,15 @@
 
 import UIKit
 
-class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
+class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormViewControllerDelegate {
     
     // MARK: Variables
     var logEntries: [LogEntry] = []
+    var filteredData: [LogEntry]!
     
     // MARK: IBOutlets
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: View Lifecyle methods
     override func viewDidLoad() {
@@ -22,9 +24,10 @@ class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         logEntries = load() // load existing data
-        print("Loaded")
+        filteredData = logEntries
     }
     
     // return log entries (for use in other VC)
@@ -35,6 +38,7 @@ class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
     // add new log entry to array and reload table data
     func addNewExerciseEntry(logEntry: LogEntry) {
         logEntries.insert(logEntry, at: 0)
+        filteredData = logEntries
         tableView.reloadData()
     }
     
@@ -63,8 +67,9 @@ class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
         return false
     }
     
-    // call save method when leaving the table view screen
+    // call save method when leaving the tableview screen
     override func viewWillDisappear(_ animated: Bool) {
+        //searchBar(searchBar, textDidChange: "")
         print(String(describing: save(data: logEntries)))
     }
 
@@ -75,17 +80,34 @@ class HistoryViewController: UIViewController, InputFormViewControllerDelegate {
             destinationVC.delegate = self
         }
     }
+    
+    // MARK: Search Bar config
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = []
+        if searchText == "" {
+            filteredData = logEntries
+        }
+        else {
+            for entry in logEntries {
+                if entry.exercise.lowercased().contains(searchText.lowercased()) {
+                    filteredData.append(entry)
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
 }
 
+// MARK: Tableview config
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return logEntries.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let logEntry = logEntries[indexPath.row]
+        let logEntry = filteredData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "LogEntryCell") as! LogEntryCell
         cell.setLogEntry(logEntry: logEntry)
         
@@ -98,8 +120,10 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            filteredData.remove(at: indexPath.row)
             logEntries.remove(at: indexPath.row)
         }
+        //logEntries = filteredData
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
