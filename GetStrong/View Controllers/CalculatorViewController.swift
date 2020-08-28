@@ -130,7 +130,7 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
             WeightLabel.text = Calculate.getTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0)
         }
         else {
-            Alert.showBasicAlert(on: self, with: "Invalid Inputs", message: "Please fill out all fields and try again.")
+            Alert.showBasicAlert(on: self, with: "Invalid Inputs", message: "Make sure all fields are filled out and try again")
         }
     }
     

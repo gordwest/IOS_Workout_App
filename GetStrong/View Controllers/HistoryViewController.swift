@@ -13,6 +13,7 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
     // MARK: Variables
     var logEntries: [LogEntry] = []
     var filteredData: [LogEntry]!
+    var dataIndex: [Int]!
     
     // MARK: IBOutlets
     @IBOutlet var tableView: UITableView!
@@ -69,7 +70,6 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
     
     // call save method when leaving the tableview screen
     override func viewWillDisappear(_ animated: Bool) {
-        //searchBar(searchBar, textDidChange: "")
         print(String(describing: save(data: logEntries)))
     }
 
@@ -84,6 +84,7 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
     // MARK: Search Bar config
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
+        dataIndex = []
         if searchText == "" {
             filteredData = logEntries
         }
@@ -91,9 +92,11 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
             for entry in logEntries {
                 if entry.exercise.lowercased().contains(searchText.lowercased()) {
                     filteredData.append(entry)
+                    dataIndex.append(logEntries.firstIndex{$0 === entry}!)
                 }
             }
         }
+        //print(dataIndex)
         self.tableView.reloadData()
     }
 }
@@ -106,11 +109,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let logEntry = filteredData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "LogEntryCell") as! LogEntryCell
         cell.setLogEntry(logEntry: logEntry)
-        
         return cell
     }
     
@@ -121,14 +122,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             filteredData.remove(at: indexPath.row)
-            logEntries.remove(at: indexPath.row)
+            logEntries.remove(at: dataIndex[indexPath.row]) //pass in index from original array
         }
-        //logEntries = filteredData
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
     }
-    
 }
 
 

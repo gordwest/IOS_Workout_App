@@ -36,11 +36,8 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     // MARK: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text!, weight: Int(weightTextField.text!)!, reps: Int(repsTextField.text!)!, rpe: rpeTextField.text!)
-        
         delegate.addNewExerciseEntry(logEntry: newLogEntry)
-        
         navigationController?.popViewController(animated: true)
-        
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
     }
     
@@ -108,8 +105,8 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == repsPicker {
             return repRange[row]
-
-        } else if pickerView == rpePicker{
+        }
+        else if pickerView == rpePicker{
              return rpeRange[row]
         }
         return ""
@@ -144,7 +141,6 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     // MARK: Tool bar
-    // create tool bar for UIPickerViews
     func initializeToolBar() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
         toolbar.barStyle = UIBarStyle.black
