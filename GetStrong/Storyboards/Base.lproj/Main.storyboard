@@ -279,7 +279,7 @@
                                             <constraint firstAttribute="height" constant="60" id="XbF-IE-uOR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <state key="normal" title="History">
+                                        <state key="normal" title="Log">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -519,7 +519,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Oo0-SB-UuP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="History" id="a5Q-tN-CFZ">
+                    <navigationItem key="navigationItem" title="Log" id="a5Q-tN-CFZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tjy-4w-0yf">
                             <connections>
                                 <segue destination="U83-a1-Wtx" kind="show" identifier="inputFormSegue" id="a6q-Ug-age"/>
@@ -713,7 +713,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Y90-kg-vPD">
-                                <rect key="frame" x="20" y="133.5" width="335" height="116.5"/>
+                                <rect key="frame" x="20" y="155" width="335" height="95"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Select current day/week of program" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9h-Cf-aE4">
                                         <rect key="frame" x="14.5" y="0.0" width="306" height="21.5"/>
@@ -733,8 +733,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Keep track of past lifts in the history section" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNG-er-zt4">
-                                        <rect key="frame" x="40" y="73.5" width="255.5" height="43"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Keep track of past lifts in the log" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNG-er-zt4">
+                                        <rect key="frame" x="27.5" y="73.5" width="280.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -742,7 +742,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How To" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAZ-Jq-AZJ">
-                                <rect key="frame" x="149.5" y="102" width="76" height="26.5"/>
+                                <rect key="frame" x="149.5" y="123.5" width="76" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

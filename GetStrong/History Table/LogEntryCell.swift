@@ -10,7 +10,6 @@ import UIKit
 
 class LogEntryCell: UITableViewCell {
 
-
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!

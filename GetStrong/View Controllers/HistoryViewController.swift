@@ -28,6 +28,7 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
         searchBar.delegate = self
         
         logEntries = load() // load existing data
+        print("loaded")
         filteredData = logEntries
     }
     
@@ -121,8 +122,14 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            filteredData.remove(at: indexPath.row)
-            logEntries.remove(at: dataIndex[indexPath.row]) //pass in index from original array
+            if dataIndex == nil {
+                filteredData.remove(at: indexPath.row)
+                logEntries.remove(at: indexPath.row)
+            }
+            else {
+                filteredData.remove(at: indexPath.row)
+                logEntries.remove(at: dataIndex[indexPath.row]) //pass in index from original array
+            }
         }
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
