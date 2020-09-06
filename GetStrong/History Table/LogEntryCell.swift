@@ -19,9 +19,9 @@ class LogEntryCell: UITableViewCell {
     func setLogEntry(logEntry: LogEntry) {
         dateLabel.text = logEntry.date
         exerciseLabel.text = logEntry.exercise
-        weightLabel.text = String(logEntry.weight)
-        repsLabel.text = String(logEntry.reps)
-        rpeLabel.text = logEntry.rpe
+        weightLabel.text = String(logEntry.weight) + " LBS"
+        repsLabel.text = "REPS: " + String(logEntry.reps)
+        rpeLabel.text = "RPE: " + logEntry.rpe
     }
     
 }

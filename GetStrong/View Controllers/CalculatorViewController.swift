@@ -20,7 +20,7 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     // MARK: IBOutlets
     @IBOutlet weak var DaySegmentControl: UISegmentedControl!
     @IBOutlet weak var WeekSegmentControl: UISegmentedControl!
-    @IBOutlet weak var WeightLabel: UILabel!
+    @IBOutlet weak var TopsetLabel: UILabel!
     @IBOutlet weak var RepsLabel: UILabel!
     @IBOutlet weak var repsTextField: UITextField!
     @IBOutlet weak var rpeTextField: UITextField!
@@ -34,6 +34,8 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         repsPicker.delegate = self
         repsPicker.dataSource = self
@@ -125,9 +127,9 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
         let reps = Calculate.getReps(day: dayChoice, week: weekChoice)
         // Assign labels if fields are filled out
         if weightEntry != nil && repsEntry != nil && rpeEntry != nil { // check if all fields have values
-            RepsLabel.text = String(reps)
-            e1RMLabel.text = String(e1RM)
-            WeightLabel.text = Calculate.getTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0)
+            //RepsLabel.text = String(reps)
+            e1RMLabel.text = String(e1RM) + "lbs"
+            TopsetLabel.text = Calculate.getTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0) + "lbs for " + String(reps)
         }
         else {
             Alert.showBasicAlert(on: self, with: "Invalid Inputs", message: "Fill out all fields and try again")

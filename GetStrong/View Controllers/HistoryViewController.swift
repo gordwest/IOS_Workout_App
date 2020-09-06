@@ -105,6 +105,11 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
 // MARK: Tableview config
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
+    // testing cell selection functionality
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(filteredData[indexPath.row].exercise)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
@@ -120,6 +125,22 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         return true
     }
     
+    /*
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            print("Editing")
+        }
+        return [edit]
+    } */
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
+            print("Editing")
+        }
+        return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
+    /*
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if dataIndex == nil {
@@ -134,7 +155,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
-    }
+    } */
 }
 
 
