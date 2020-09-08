@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
@@ -21,7 +22,6 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var DaySegmentControl: UISegmentedControl!
     @IBOutlet weak var WeekSegmentControl: UISegmentedControl!
     @IBOutlet weak var TopsetLabel: UILabel!
-    @IBOutlet weak var RepsLabel: UILabel!
     @IBOutlet weak var repsTextField: UITextField!
     @IBOutlet weak var rpeTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
@@ -35,7 +35,10 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        TopsetLabel.layer.cornerRadius = 10
+        TopsetLabel.layer.masksToBounds = true
+        e1RMLabel.layer.cornerRadius = 10
+        e1RMLabel.layer.masksToBounds = true
         
         repsPicker.delegate = self
         repsPicker.dataSource = self

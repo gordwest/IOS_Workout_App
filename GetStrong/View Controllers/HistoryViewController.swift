@@ -125,13 +125,16 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         return true
     }
     
-    /*
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
-            print("Editing")
+        let calculate = UITableViewRowAction(style: .normal, title: "Calculate") { (action, indexPath) in
+            print("Calculate")
         }
-        return [edit]
-    } */
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            print("Deleted")
+        }
+        return [delete, calculate]
+    }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
