@@ -30,6 +30,7 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
         logEntries = load() // load existing data
         print("loaded")
         filteredData = logEntries
+        
     }
     
     // return log entries (for use in other VC)
@@ -38,7 +39,7 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
     }
     
     // add new log entry to array and reload table data
-    func addNewExerciseEntry(logEntry: LogEntry) {
+    func addNewLogEntry(logEntry: LogEntry) {
         logEntries.insert(logEntry, at: 0)
         filteredData = logEntries
         tableView.reloadData()
@@ -108,6 +109,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     // testing cell selection functionality
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(filteredData[indexPath.row].exercise)
+        print(filteredData[indexPath.row].weight)
+        print(filteredData[indexPath.row].reps)
+        print(filteredData[indexPath.row].rpe)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,40 +129,49 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         return true
     }
     
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let calculate = UITableViewRowAction(style: .normal, title: "Calculate") { (action, indexPath) in
-            print("Calculate")
-        }
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            print("Deleted")
-        }
-        return [delete, calculate]
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let edit = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, boolValue) in
-            print("Editing")
-        }
-        return UISwipeActionsConfiguration(actions: [edit])
-    }
-    
-    /*
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if dataIndex == nil {
-                filteredData.remove(at: indexPath.row)
-                logEntries.remove(at: indexPath.row)
+      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // create swipe to delete option
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            let alertMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+            // create ok button with action handler
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                //print("Ok button tapped")
+                // check if data is being filtered and then delete accordingly
+                if self.dataIndex == nil {
+                       self.filteredData.remove(at: indexPath.row)
+                       self.logEntries.remove(at: indexPath.row)
+                   }
+                   else {
+                       self.filteredData.remove(at: indexPath.row)
+                       self.logEntries.remove(at: self.dataIndex[indexPath.row]) //pass in index from original array
+                   }
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            })
+            // create cancel button with action handlder
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
             }
-            else {
-                filteredData.remove(at: indexPath.row)
-                logEntries.remove(at: dataIndex[indexPath.row]) //pass in index from original array
-            }
+            // add buttons and present
+            alertMessage.addAction(cancel)
+            alertMessage.addAction(ok)
+            self.present(alertMessage, animated: true, completion: nil)
         }
-        tableView.beginUpdates()
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
-    } */
+        // create swipe to populate calculator with log entry data
+        let calculate = UIContextualAction(style: .normal, title: "Calculate") {  (contextualAction, view, boolValue) in
+            let calculatorView = self.storyboard?.instantiateViewController(withIdentifier: "calculatorVC") as! CalculatorViewController
+            self.navigationController?.pushViewController(calculatorView, animated: true)
+            calculatorView.weight = String(self.filteredData[indexPath.row].weight)
+            calculatorView.reps = String(self.filteredData[indexPath.row].reps)
+            calculatorView.rpe = self.filteredData[indexPath.row].rpe
+        }
+        /*let edit = UIContextualAction(style: .destructive, title: "edit") {  (contextualAction, view, boolValue) in
+            //Code I want to do here
+        }*/
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete, calculate])
+        return swipeActions
+    }
 }
 
 

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol InputFormViewControllerDelegate {
-    func addNewExerciseEntry(logEntry: LogEntry)
+    func addNewLogEntry(logEntry: LogEntry)
     func save(data: [LogEntry]) -> Bool
     func getLogEntries() -> Array<LogEntry>
 }
@@ -36,7 +36,7 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     // MARK: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text!, weight: Int(weightTextField.text!)!, reps: Int(repsTextField.text!)!, rpe: rpeTextField.text!)
-        delegate.addNewExerciseEntry(logEntry: newLogEntry)
+        delegate.addNewLogEntry(logEntry: newLogEntry)
         navigationController?.popViewController(animated: true)
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
     }

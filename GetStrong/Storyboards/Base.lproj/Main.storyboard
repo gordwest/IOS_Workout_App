@@ -354,7 +354,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Dtl-iX-wNz">
                                                     <rect key="frame" x="145" y="11" width="249" height="78"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Press" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdu-53-Uos" userLabel="Exercise">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bench Press" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Xdu-53-Uos" userLabel="Exercise">
                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="36.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                             <nil key="textColor"/>
@@ -366,7 +366,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="PvA-u1-NEG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="61" height="36.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="225 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-xg-AAN" userLabel="Weight">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="225 lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-xg-AAN" userLabel="Weight">
                                                                             <rect key="frame" x="0.0" y="0.0" width="61" height="18.5"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                             <nil key="textColor"/>
@@ -383,7 +383,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="21h-4E-5e6">
                                                                     <rect key="frame" x="81" y="0.0" width="61" height="36.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lb-fN-tqq" userLabel="Reps">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="5lb-fN-tqq" userLabel="Reps">
                                                                             <rect key="frame" x="25" y="0.0" width="11" height="18.5"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                             <nil key="textColor"/>
@@ -400,7 +400,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lbz-20-ulM">
                                                                     <rect key="frame" x="162" y="0.0" width="61" height="36.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEZ-M7-V7j" userLabel="RPE">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="HEZ-M7-V7j" userLabel="RPE">
                                                                             <rect key="frame" x="17.5" y="0.0" width="26.5" height="18.5"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                             <nil key="textColor"/>
@@ -430,8 +430,9 @@
                                                 <constraint firstItem="Dtl-iX-wNz" firstAttribute="leading" secondItem="aUI-a3-bH7" secondAttribute="trailing" constant="25" id="Ycj-l9-qYb"/>
                                                 <constraint firstItem="Dtl-iX-wNz" firstAttribute="top" secondItem="kKq-mR-maV" secondAttribute="topMargin" id="ajJ-vr-Cvm"/>
                                                 <constraint firstAttribute="trailing" secondItem="YFF-k5-WhU" secondAttribute="trailing" constant="10" id="cyf-OS-tCs"/>
-                                                <constraint firstItem="aUI-a3-bH7" firstAttribute="leading" secondItem="kKq-mR-maV" secondAttribute="leading" constant="20" id="eqE-QK-tjF"/>
+                                                <constraint firstItem="aUI-a3-bH7" firstAttribute="leading" secondItem="kKq-mR-maV" secondAttribute="leading" priority="999" constant="20" id="eqE-QK-tjF"/>
                                                 <constraint firstItem="YFF-k5-WhU" firstAttribute="top" secondItem="kKq-mR-maV" secondAttribute="top" constant="5" id="fgu-fG-8q1"/>
+                                                <constraint firstItem="aUI-a3-bH7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kKq-mR-maV" secondAttribute="leading" constant="5" id="yQD-Mn-xb3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

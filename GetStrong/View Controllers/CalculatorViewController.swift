@@ -17,6 +17,9 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     
     let repRange = ["8","7","6","5","4","3","2","1"]
     let rpeRange = ["10","9.5","9","8.5","8","7.5","7"]
+    var weight = ""
+    var reps = ""
+    var rpe = ""
     
     // MARK: IBOutlets
     @IBOutlet weak var DaySegmentControl: UISegmentedControl!
@@ -35,10 +38,10 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TopsetLabel.layer.cornerRadius = 10
-        TopsetLabel.layer.masksToBounds = true
-        e1RMLabel.layer.cornerRadius = 10
-        e1RMLabel.layer.masksToBounds = true
+        // used when populating from a log entry
+        repsTextField.text = reps
+        weightTextField.text = weight
+        rpeTextField.text = rpe
         
         repsPicker.delegate = self
         repsPicker.dataSource = self
@@ -130,12 +133,16 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
         let reps = Calculate.getReps(day: dayChoice, week: weekChoice)
         // Assign labels if fields are filled out
         if weightEntry != nil && repsEntry != nil && rpeEntry != nil { // check if all fields have values
-            //RepsLabel.text = String(reps)
-            e1RMLabel.text = String(e1RM) + "lbs"
-            TopsetLabel.text = Calculate.getTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0) + "lbs for " + String(reps)
+            if repsEntry! <= 8 {
+                e1RMLabel.text = String(e1RM) + " lbs"
+                TopsetLabel.text = Calculate.getTopSet(e1RM: e1RM, weight: weightEntry ?? 0, reps: reps, rpe: rpeEntry ?? 0) + " lbs for " + String(reps)
+            }
+            else {
+                Alert.showBasicAlert(on: self, with: "Invalid Reps", message: "Supported rep range is 1 to 8")
+            }
         }
         else {
-            Alert.showBasicAlert(on: self, with: "Invalid Inputs", message: "Fill out all fields and try again")
+            Alert.showBasicAlert(on: self, with: "Missing Inputs", message: "Fill out all fields and try again")
         }
     }
     
