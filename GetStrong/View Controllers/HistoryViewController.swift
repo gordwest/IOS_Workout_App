@@ -135,7 +135,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
             let alertMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
             // create ok button with action handler
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                //print("Ok button tapped")
                 // check if data is being filtered and then delete accordingly
                 if self.dataIndex == nil {
                        self.filteredData.remove(at: indexPath.row)
@@ -152,6 +151,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
             // create cancel button with action handlder
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                 print("Cancel button tapped")
+                tableView.beginUpdates()
+                tableView.endUpdates()
             }
             // add buttons and present
             alertMessage.addAction(cancel)
@@ -169,6 +170,10 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         /*let edit = UIContextualAction(style: .destructive, title: "edit") {  (contextualAction, view, boolValue) in
             //Code I want to do here
         }*/
+        
+        // modify style of swipe actions
+        calculate.backgroundColor = .init(red: 0/255, green: 85/255, blue: 152/255, alpha: 100)
+        
         let swipeActions = UISwipeActionsConfiguration(actions: [delete, calculate])
         return swipeActions
     }

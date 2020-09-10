@@ -35,7 +35,7 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     // MARK: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text!, weight: Int(weightTextField.text!)!, reps: Int(repsTextField.text!)!, rpe: rpeTextField.text!)
+        let newLogEntry = LogEntry(date: dateTextField.text!, exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
         delegate.addNewLogEntry(logEntry: newLogEntry)
         navigationController?.popViewController(animated: true)
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
