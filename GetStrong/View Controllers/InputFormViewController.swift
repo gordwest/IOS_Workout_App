@@ -172,4 +172,9 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         repsTextField.resignFirstResponder()
         rpeTextField.resignFirstResponder()
     }
+    
+    // hide keyboard/picker when touch even occurs
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
