@@ -30,7 +30,6 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
         logEntries = load() // load existing data
         print("loaded")
         filteredData = logEntries
-        
     }
     
     // return log entries (for use in other VC)
@@ -38,9 +37,18 @@ class HistoryViewController: UIViewController, UISearchBarDelegate, InputFormVie
         return logEntries
     }
     
+    // convert string to date
+    func asDate(date:String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.none
+        return formatter.date(from: date as String)!
+    }
+    
     // add new log entry to array and reload table data
     func addNewLogEntry(logEntry: LogEntry) {
         logEntries.insert(logEntry, at: 0)
+        logEntries = logEntries.sorted(by: {asDate(date: $0.date) > asDate(date: $1.date)}) // sort array by date
         filteredData = logEntries
         tableView.reloadData()
     }
@@ -108,11 +116,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     // testing cell selection functionality
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(filteredData[indexPath.row].exercise)
-        print(filteredData[indexPath.row].weight)
-        print(filteredData[indexPath.row].reps)
-        print(filteredData[indexPath.row].rpe)
+        let sorted = Sorting.simpleSort(arr: filteredData)
+        for s in sorted {
+            print(s.weight)
+        }
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count

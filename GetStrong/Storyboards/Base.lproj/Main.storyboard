@@ -323,7 +323,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-I8-xCx">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" red="0.92157477139999999" green="0.92155748609999999" blue="0.92156922819999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LogEntryCell" id="CNM-lZ-WMD" customClass="LogEntryCell" customModule="GetStrong" customModuleProvider="target">
@@ -452,7 +452,7 @@
                             <constraint firstItem="Oo0-SB-UuP" firstAttribute="trailing" secondItem="wfZ-I8-xCx" secondAttribute="trailing" id="9Gm-TE-cgM"/>
                             <constraint firstItem="wfZ-I8-xCx" firstAttribute="leading" secondItem="Oo0-SB-UuP" secondAttribute="leading" id="RE0-nh-iOM"/>
                             <constraint firstItem="oHe-oA-kEq" firstAttribute="trailing" secondItem="Oo0-SB-UuP" secondAttribute="trailing" id="a4d-Xy-fUV"/>
-                            <constraint firstItem="Oo0-SB-UuP" firstAttribute="bottom" secondItem="wfZ-I8-xCx" secondAttribute="bottom" id="cha-I0-3KN"/>
+                            <constraint firstAttribute="bottom" secondItem="wfZ-I8-xCx" secondAttribute="bottom" id="awE-4W-wap"/>
                             <constraint firstItem="oHe-oA-kEq" firstAttribute="leading" secondItem="Oo0-SB-UuP" secondAttribute="leading" id="ppY-cZ-L5U"/>
                             <constraint firstItem="oHe-oA-kEq" firstAttribute="top" secondItem="Oo0-SB-UuP" secondAttribute="top" id="xfY-vh-qot"/>
                         </constraints>
