@@ -116,12 +116,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
     
     // testing cell selection functionality
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sorted = Sorting.simpleSort(arr: filteredData)
-        for s in sorted {
-            print(s.weight)
-        }
+        
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
