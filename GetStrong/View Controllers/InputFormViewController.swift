@@ -27,20 +27,15 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     let rpeRange = ["10","9.5","9","8.5","8","7.5","7","6.5","6"]
     
     // MARK: IBOutlets
-    @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var excersieTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var repsTextField: UITextField!
     @IBOutlet weak var rpeTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     // MARK: IBActions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        //let formatter = DateFormatter()
-        //formatter.dateStyle = DateFormatter.Style.medium
-        //formatter.timeStyle = DateFormatter.Style.none
-        //let dateInput = formatter.date(from: dateTextField.text!)
-        
-        let newLogEntry = LogEntry(date: dateTextField.text ?? "", exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
+        let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
         delegate.addNewLogEntry(logEntry: newLogEntry)
         navigationController?.popViewController(animated: true)
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
@@ -49,6 +44,11 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     // MARK: View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker?.datePickerMode = .date
+        datePicker.backgroundColor = .lightGray
+        datePicker.tintColor = .black
         
         repsPicker.delegate = self
         repsPicker.dataSource = self
@@ -60,46 +60,14 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
                
         repsTextField.inputView = repsPicker
         rpeTextField.inputView = rpePicker
-        
-        dateTextField.text = todayDate() // initialize as today's date by default
-        initializeDatePicker()
-        initializeToolBar()
     }
     
-    // get today's date
-    func todayDate() -> String{
+    // convert date to string
+    func asString(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
-        return formatter.string(from: NSDate() as Date)
-    }
-    
-    // update textfield with datepicker value
-    @objc func datePickerValueChanged(sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.medium
-        formatter.timeStyle = DateFormatter.Style.none
-        dateTextField.text = formatter.string(from: sender.date)
-    }
-    
-    // Mark: UIDatePicker
-    func initializeDatePicker() {
-        let datepicker = UIDatePicker()
-        datepicker.datePickerMode = UIDatePicker.Mode.date
-        datepicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControl.Event.valueChanged)
-        dateTextField.inputView = datepicker
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
-        toolbar.barStyle = UIBarStyle.black
-        toolbar.tintColor = UIColor.white
-        
-        let todayButton = UIBarButtonItem(title: "Today", style: UIBarButtonItem.Style.plain, target: self, action: #selector(todayPressed(sender:)))
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed(sender:)))
-        let clearButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(clearPressed(sender:)))
-        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-        
-        toolbar.setItems([clearButton, flexButton, todayButton, flexButton, doneButton], animated: true)
-        dateTextField.inputAccessoryView = toolbar
+        return formatter.string(from: date as Date)
     }
     
     // MARK: UIPickerView
@@ -143,39 +111,6 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         else if textField == rpeTextField && rpeTextField.text == "" {
             rpeTextField.text = rpeRange[0]
         }
-    }
-    
-    // MARK: Tool bar
-    func initializeToolBar() {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
-        toolbar.barStyle = UIBarStyle.black
-        toolbar.tintColor = UIColor.white
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed(sender:)))
-        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-        
-        toolbar.setItems([flexButton, flexButton, doneButton], animated: true)
-        rpeTextField.inputAccessoryView = toolbar
-        repsTextField.inputAccessoryView = toolbar
-    }
-    
-    @objc func clearPressed(sender: UIBarButtonItem) {
-        dateTextField.text = ""
-        dateTextField.resignFirstResponder()
-    }
-    
-    @objc func todayPressed(sender: UIBarButtonItem) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = DateFormatter.Style.medium
-        formatter.timeStyle = DateFormatter.Style.none
-        dateTextField.text = formatter.string(from: NSDate() as Date)
-        dateTextField.resignFirstResponder()
-    }
-    
-    @objc func donePressed(sender: UIBarButtonItem) {
-        dateTextField.resignFirstResponder()
-        repsTextField.resignFirstResponder()
-        rpeTextField.resignFirstResponder()
     }
     
     // hide keyboard/picker when touch even occurs

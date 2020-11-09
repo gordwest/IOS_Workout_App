@@ -457,8 +457,8 @@
                             <constraint firstItem="wfZ-I8-xCx" firstAttribute="leading" secondItem="Oo0-SB-UuP" secondAttribute="leading" id="RE0-nh-iOM"/>
                             <constraint firstItem="oHe-oA-kEq" firstAttribute="trailing" secondItem="Oo0-SB-UuP" secondAttribute="trailing" id="a4d-Xy-fUV"/>
                             <constraint firstAttribute="bottom" secondItem="wfZ-I8-xCx" secondAttribute="bottom" id="awE-4W-wap"/>
+                            <constraint firstItem="oHe-oA-kEq" firstAttribute="top" secondItem="Oo0-SB-UuP" secondAttribute="top" id="fRf-7K-fN5"/>
                             <constraint firstItem="oHe-oA-kEq" firstAttribute="leading" secondItem="Oo0-SB-UuP" secondAttribute="leading" id="ppY-cZ-L5U"/>
-                            <constraint firstItem="oHe-oA-kEq" firstAttribute="top" secondItem="Oo0-SB-UuP" secondAttribute="top" id="xfY-vh-qot"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log" id="a5Q-tN-CFZ">
@@ -491,17 +491,10 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xdr-3B-l4s">
                                 <rect key="frame" x="50" y="238" width="314" height="165"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBk-Mo-kGI">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="IWd-d1-nAI">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="45"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mfw-Au-HZ5">
                                         <rect key="frame" x="0.0" y="60" width="314" height="45"/>
                                         <subviews>
@@ -582,7 +575,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateTextField" destination="NBk-Mo-kGI" id="1Ro-5l-g1f"/>
+                        <outlet property="datePicker" destination="IWd-d1-nAI" id="Slb-6o-ii5"/>
                         <outlet property="excersieTextField" destination="9n0-s4-LBt" id="GfW-0n-G3H"/>
                         <outlet property="repsTextField" destination="BMj-Yx-jeq" id="nHQ-3V-neP"/>
                         <outlet property="rpeTextField" destination="kfd-9f-Igi" id="ini-BT-BUm"/>
@@ -732,7 +725,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqE-Aq-QCS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="-335"/>
+            <point key="canvasLocation" x="458" y="-435"/>
         </scene>
     </scenes>
     <resources>
