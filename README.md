@@ -7,16 +7,9 @@ This workout app comes equiped with a workout diary to track your lifts and a pr
 ### Features
 - Top set and estimated 1 rep max (E1RM) calculator
 - Table to log exercise history
-
-### Upcoming changes in next patch
-- Make placeholder text more clear for input fields
-- Add new history entries to top of table instead of bottom (until I can get table sorting implemented)
-- Table data saves to user default after new entry is made
-- Address table spacing on smaller devices
+	- Searchable by exercise
+	- Filtered by date
 
 ### Future changes
-- Enable sorting on history table
-- Add search functionality to history table
-- Feed top set data directly into a history log input
-- Some visuals to represent strength trends
+- Visuals to represent strength trends
 - Support for a variety of workout styles 
