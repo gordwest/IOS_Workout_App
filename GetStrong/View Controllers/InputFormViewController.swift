@@ -34,12 +34,19 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var datePicker: UIDatePicker!
     
     // MARK: IBActions
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func savePressed(_ sender: UIBarButtonItem) {
         let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
         delegate.addNewLogEntry(logEntry: newLogEntry)
         navigationController?.popViewController(animated: true)
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
     }
+    /*
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
+        delegate.addNewLogEntry(logEntry: newLogEntry)
+        navigationController?.popViewController(animated: true)
+        print(String(describing: delegate.save(data: delegate.getLogEntries())))
+    }*/
     
     // MARK: View lifecycle methods
     override func viewDidLoad() {
