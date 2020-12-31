@@ -17,9 +17,9 @@ protocol InputFormViewControllerDelegate {
 class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // MARK: Variables
-    var delegate: InputFormViewControllerDelegate!
-    var repsPickerData:[String] = [String]()
+    var delegate: InputFormViewControllerDelegate?
     
+    var repsPickerData:[String] = [String]()
     let repsPicker = UIPickerView()
     let rpePicker = UIPickerView()
     
@@ -35,10 +35,11 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     // MARK: IBActions
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
+        
         let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
-        delegate.addNewLogEntry(logEntry: newLogEntry)
-        navigationController?.popViewController(animated: true)
-        print(String(describing: delegate.save(data: delegate.getLogEntries())))
+        //delegate?.addNewLogEntry(logEntry: newLogEntry)
+        self.dismiss(animated: true, completion: nil)
+        //print(String(describing: delegate.save(data: delegate.getLogEntries())))
     }
     /*
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -120,7 +121,7 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         }
     }
     
-    // hide keyboard/picker when touch even occurs
+    // hide keyboard/picker when touch event occurs
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

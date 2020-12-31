@@ -393,7 +393,7 @@
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="U83-a1-Wtx" kind="show" id="NLi-Gf-G45"/>
+                                    <segue destination="U83-a1-Wtx" kind="show" identifier="inputFormVC" id="NLi-Gf-G45"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -670,6 +670,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="2Tr-Ul-wac" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x6e-aD-90K">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
