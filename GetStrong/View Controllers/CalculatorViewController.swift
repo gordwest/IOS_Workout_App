@@ -29,14 +29,24 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     @IBOutlet weak var rpeTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var e1RMLabel: UILabel!
+    @IBOutlet weak var calcButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
     // MARK: IBActions
     @IBAction func calculateClick(_ sender: Any) {
         assignLabels()
     }
     
+    @IBAction func resetPressed(_ sender: Any) {
+        resetPage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // style button
+        InputFormViewController().addShadow(button: calcButton, cornerRad: 20)
+        InputFormViewController().addShadow(button: resetButton, cornerRad: 15)
         
         // used when populating from a log entry
         repsTextField.text = reps
@@ -121,6 +131,19 @@ class CalculatorViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
 
     // MARK: View lifecycle methods
+    
+    // return page to default
+    func resetPage() {
+        DaySegmentControl.selectedSegmentIndex = 0
+        WeekSegmentControl.selectedSegmentIndex = 0
+        TopsetLabel.text = "-"
+        e1RMLabel.text = "-"
+        repsTextField.text = ""
+        rpeTextField.text = ""
+        weightTextField.text = ""
+        
+    }
+    
     // assign output labels for calculation based off user input
     func assignLabels() {
         // Assign variables from user input
