@@ -17,13 +17,13 @@ protocol InputFormViewControllerDelegate {
 class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     // MARK: Variables
-    var delegate: InputFormViewControllerDelegate?
+    var delegate: InputFormViewControllerDelegate!
     
     var repsPickerData:[String] = [String]()
     let repsPicker = UIPickerView()
     let rpePicker = UIPickerView()
     
-    let repRange = ["12","11","10","9","8","7","6","5","4","3","2","1"]
+    let repRange = ["15","14","13","12","11","10","9","8","7","6","5","4","3","2","1"]
     let rpeRange = ["10","9.5","9","8.5","8","7.5","7","6.5","6"]
     
     // MARK: IBOutlets
@@ -32,26 +32,31 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var repsTextField: UITextField!
     @IBOutlet weak var rpeTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: IBActions
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        
-        let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
-        //delegate?.addNewLogEntry(logEntry: newLogEntry)
-        self.dismiss(animated: true, completion: nil)
-        //print(String(describing: delegate.save(data: delegate.getLogEntries())))
-    }
-    /*
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         let newLogEntry = LogEntry(date: asString(date: datePicker.date), exercise: excersieTextField.text ?? "", weight: Int(weightTextField.text!) ?? 0, reps: Int(repsTextField.text!) ?? 0, rpe: rpeTextField.text ?? "")
         delegate.addNewLogEntry(logEntry: newLogEntry)
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
         print(String(describing: delegate.save(data: delegate.getLogEntries())))
-    }*/
+    }
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     // MARK: View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // style buttons
+        addShadow(button: saveButton, cornerRad: 15)
+        addShadow(button: cancelButton, cornerRad: 15)
+        
+        initializeToolBar()
         
         datePicker.preferredDatePickerStyle = .compact
         datePicker?.datePickerMode = .date
@@ -70,12 +75,40 @@ class InputFormViewController: UIViewController, UIPickerViewDataSource, UIPicke
         rpeTextField.inputView = rpePicker
     }
     
+    func addShadow(button: UIButton, cornerRad: CGFloat) {
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowRadius = 2.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.cornerRadius = cornerRad
+    }
+    
     // convert date to string
     func asString(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
         return formatter.string(from: date as Date)
+    }
+    
+    // MARK: Tool bar
+    // create/add tool bar to UIPickerViews
+    func initializeToolBar() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+        toolbar.barStyle = UIBarStyle.black
+        toolbar.tintColor = UIColor.white
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed(sender:)))
+        let flexButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([flexButton, flexButton, doneButton], animated: true)
+        rpeTextField.inputAccessoryView = toolbar
+        repsTextField.inputAccessoryView = toolbar
+    }
+    
+    // tool bar done button - closes UIPickerView
+    @objc func donePressed(sender: UIBarButtonItem) {
+        repsTextField.resignFirstResponder()
+        rpeTextField.resignFirstResponder()
     }
     
     // MARK: UIPickerView
