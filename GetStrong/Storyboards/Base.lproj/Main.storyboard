@@ -274,7 +274,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Heaviest Lift)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uu-m3-cpM" userLabel="Heaviest Lift">
-                                <rect key="frame" x="0.0" y="496.99999999999994" width="390" height="39.333333333333314"/>
+                                <rect key="frame" x="0.0" y="492" width="390" height="39.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Lalezar-Regular" family="Lalezar" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -291,7 +291,7 @@
                         <constraints>
                             <constraint firstItem="EYm-9r-nJ5" firstAttribute="top" secondItem="U66-NJ-bMl" secondAttribute="top" id="H0o-sc-cvy"/>
                             <constraint firstAttribute="bottom" secondItem="EYm-9r-nJ5" secondAttribute="bottom" id="HMT-l5-Abt"/>
-                            <constraint firstItem="8uu-m3-cpM" firstAttribute="top" secondItem="cUJ-H9-V1L" secondAttribute="bottom" constant="10" id="JHU-JD-D4I"/>
+                            <constraint firstItem="8uu-m3-cpM" firstAttribute="top" secondItem="cUJ-H9-V1L" secondAttribute="bottom" constant="5" id="JHU-JD-D4I"/>
                             <constraint firstItem="qoI-DB-8ma" firstAttribute="leading" secondItem="N1a-5z-PSu" secondAttribute="leading" constant="50" id="KHa-EK-BWU"/>
                             <constraint firstItem="UTU-e6-Z0A" firstAttribute="leading" secondItem="N1a-5z-PSu" secondAttribute="leading" id="Qfk-UH-uey"/>
                             <constraint firstItem="N1a-5z-PSu" firstAttribute="trailing" secondItem="UTU-e6-Z0A" secondAttribute="trailing" id="SaE-bM-nHj"/>
@@ -768,7 +768,7 @@
                             <constraint firstItem="Y90-kg-vPD" firstAttribute="centerX" secondItem="fQN-8w-2Jr" secondAttribute="centerX" id="qf9-k3-ITt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" image="ellipsis" catalog="system" selectedImage="ellipsis" id="57v-pZ-w4Q"/>
+                    <tabBarItem key="tabBarItem" title="More" image="ellipsis.rectangle" catalog="system" selectedImage="ellipsis.rectangle" id="57v-pZ-w4Q"/>
                     <navigationItem key="navigationItem" title="About" id="wKb-5c-XdK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jw4-Ff-VCk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -799,7 +799,7 @@
     </scenes>
     <resources>
         <image name="background" width="821" height="816"/>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="ellipsis.rectangle" catalog="system" width="128" height="81"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="plus" catalog="system" width="128" height="113"/>
